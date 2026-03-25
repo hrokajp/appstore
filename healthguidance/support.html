@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>サポート – 特定保健指導 栄養・運動改善プランシステム</title>
+  <style>
+    :root {
+      --green-dark:  #1a6b3c;
+      --green-mid:   #2e9e5b;
+      --green-light: #e8f5ee;
+      --gray-bg:     #f7f8fa;
+      --gray-border: #dde3e8;
+      --text-main:   #1c2d22;
+      --text-sub:    #4e6059;
+      --accent:      #2e9e5b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+                   "Yu Gothic", sans-serif;
+      background: var(--gray-bg);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    /* ── ヘッダー ── */
+    header {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 100%);
+      color: #fff;
+      padding: 48px 24px 40px;
+      text-align: center;
+    }
+    header .icon {
+      width: 72px;
+      height: 72px;
+      background: rgba(255,255,255,0.18);
+      border-radius: 18px;
+      margin: 0 auto 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+    }
+    header h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.02em; }
+    header p  { font-size: 0.9rem; opacity: 0.85; margin-top: 6px; }
+
+    /* ── ナビ ── */
+    nav {
+      background: #fff;
+      border-bottom: 1px solid var(--gray-border);
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      overflow-x: auto;
+    }
+    nav a {
+      display: block;
+      padding: 14px 22px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-sub);
+      text-decoration: none;
+      border-bottom: 3px solid transparent;
+      white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    nav a:hover { color: var(--green-mid); border-color: var(--green-mid); }
+
+    /* ── メインコンテンツ ── */
+    main {
+      max-width: 780px;
+      margin: 40px auto;
+      padding: 0 20px 80px;
+    }
+
+    section { margin-bottom: 56px; }
+
+    section h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      border-left: 4px solid var(--green-mid);
+      padding-left: 12px;
+      margin-bottom: 20px;
+    }
+
+    /* ── アプリ概要カード ── */
+    .app-overview {
+      background: #fff;
+      border: 1px solid var(--gray-border);
+      border-radius: 14px;
+      padding: 24px 28px;
+    }
+    .app-overview p { color: var(--text-sub); font-size: 0.95rem; }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .step-card {
+      background: var(--green-light);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .step-num {
+      background: var(--green-mid);
+      color: #fff;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .step-card span { font-size: 0.88rem; color: var(--text-main); font-weight: 600; }
+
+    /* ── FAQ ── */
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    details {
+      background: #fff;
+      border: 1px solid var(--gray-border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    summary {
+      padding: 16px 20px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+      color: var(--text-main);
+      user-select: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "+";
+      font-size: 1.3rem;
+      color: var(--green-mid);
+      font-weight: 400;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+      margin-left: 12px;
+    }
+    details[open] summary::after { content: "−"; }
+    .faq-body {
+      padding: 0 20px 18px;
+      font-size: 0.93rem;
+      color: var(--text-sub);
+      border-top: 1px solid var(--green-light);
+      margin-top: 0;
+    }
+    .faq-body p { margin-top: 12px; }
+
+    /* ── お問い合わせフォーム ── */
+    .contact-card {
+      background: #fff;
+      border: 1px solid var(--gray-border);
+      border-radius: 14px;
+      padding: 28px 32px;
+    }
+    .contact-card p.desc {
+      font-size: 0.93rem;
+      color: var(--text-sub);
+      margin-bottom: 24px;
+    }
+    .form-group { margin-bottom: 18px; }
+    label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+    label .required {
+      display: inline-block;
+      background: var(--green-mid);
+      color: #fff;
+      font-size: 0.72rem;
+      padding: 1px 6px;
+      border-radius: 4px;
+      margin-left: 6px;
+      vertical-align: middle;
+      font-weight: 700;
+    }
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid var(--gray-border);
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-family: inherit;
+      color: var(--text-main);
+      background: #fafbfc;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234e6059' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 38px;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--green-mid);
+      box-shadow: 0 0 0 3px rgba(46,158,91,0.15);
+    }
+    textarea { resize: vertical; min-height: 120px; }
+
+    .submit-btn {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: opacity 0.2s, transform 0.1s;
+      margin-top: 6px;
+    }
+    .submit-btn:hover  { opacity: 0.9; }
+    .submit-btn:active { transform: scale(0.99); }
+
+    .note {
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── 成功メッセージ ── */
+    #success-msg {
+      display: none;
+      background: var(--green-light);
+      border: 1px solid var(--green-mid);
+      border-radius: 10px;
+      padding: 18px 22px;
+      text-align: center;
+      color: var(--green-dark);
+      font-weight: 600;
+      margin-top: 16px;
+    }
+
+    /* ── フッター ── */
+    footer {
+      text-align: center;
+      padding: 28px 16px;
+      font-size: 0.82rem;
+      color: var(--text-sub);
+      border-top: 1px solid var(--gray-border);
+      background: #fff;
+    }
+    footer a { color: var(--green-mid); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 520px) {
+      header h1 { font-size: 1.3rem; }
+      .contact-card { padding: 20px 18px; }
+      .steps-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header>
+  <div class="icon">🌿</div>
+  <h1>特定保健指導</h1>
+  <p>栄養・運動改善プランシステム — サポートページ</p>
+</header>
+
+<!-- ナビ -->
+<nav>
+  <a href="#about">アプリについて</a>
+  <a href="#faq">よくある質問</a>
+  <a href="#contact">お問い合わせ</a>
+</nav>
+
+<main>
+
+  <!-- ── アプリについて ── -->
+  <section id="about">
+    <h2>アプリについて</h2>
+    <div class="app-overview">
+      <p>
+        「特定保健指導」は、管理栄養士による栄養指導をサポートするアプリです。
+        対象者の基本情報・健診結果・食生活・運動習慣をヒアリングし、
+        リスク評価に基づいたオーダーメイドの食事・運動改善プランを自動生成します。
+      </p>
+      <div class="steps-grid">
+        <div class="step-card"><div class="step-num">1</div><span>基本情報の入力</span></div>
+        <div class="step-card"><div class="step-num">2</div><span>健診結果の入力</span></div>
+        <div class="step-card"><div class="step-num">3</div><span>食生活のヒアリング</span></div>
+        <div class="step-card"><div class="step-num">4</div><span>運動・生活習慣のヒアリング</span></div>
+        <div class="step-card"><div class="step-num">5</div><span>改善プランの確認</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── よくある質問 ── -->
+  <section id="faq">
+    <h2>よくある質問</h2>
+    <div class="faq-list">
+
+      <details>
+        <summary>入力した情報はどこかに保存されますか？</summary>
+        <div class="faq-body">
+          <p>入力された情報はアプリ内（端末内のメモリ）のみで処理されます。外部サーバーへの送信や保存は一切行いません。アプリを閉じると情報はリセットされます。</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>対応しているiOS・iPadOSのバージョンは？</summary>
+        <div class="faq-body">
+          <p>iOS 16.0 以降、iPadOS 16.0 以降に対応しています。最新のOSへのアップデートを推奨します。</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>BMIや腹囲リスクの判定基準はどのように決まっていますか？</summary>
+        <div class="faq-body">
+          <p>厚生労働省の「特定保健指導」ガイドラインおよび標準的な臨床基準値に基づいて判定しています。BMIは18.5 / 25.0 / 30.0、腹囲は男性85cm・女性90cmを基準としています。</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>改善プランの内容は医学的な診断になりますか？</summary>
+        <div class="faq-body">
+          <p>本アプリが提供する改善プランは参考情報であり、医療診断・医師の指示に代わるものではありません。健康上の問題がある場合は必ず医師や管理栄養士にご相談ください。</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>プランをPDFや印刷物として出力できますか？</summary>
+        <div class="faq-body">
+          <p>現バージョンではPDF出力機能は含まれていません。iOSの共有メニューから「PDFを作成」を利用するか、スクリーンショットをご活用ください。今後のアップデートで対応予定です。</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>アプリがクラッシュしたり、正常に動作しない場合は？</summary>
+        <div class="faq-body">
+          <p>以下の手順をお試しください。</p>
+          <p>① アプリを完全に終了して再起動する<br>
+             ② 端末を再起動する<br>
+             ③ iOSを最新バージョンにアップデートする<br>
+             ④ アプリを削除して再インストールする</p>
+          <p>改善しない場合は、下記のお問い合わせフォームからご連絡ください。</p>
+        </div>
+      </details>
+
+      <details>
+        <summary>機能追加のリクエストはできますか？</summary>
+        <div class="faq-body">
+          <p>大歓迎です！下記のお問い合わせフォームの「お問い合わせ種別」で「機能要望・ご提案」をお選びいただき、ご意見をお送りください。</p>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ── お問い合わせ ── -->
+  <section id="contact">
+    <h2>お問い合わせ</h2>
+    <div class="contact-card">
+      <p class="desc">
+        ご不明な点・バグのご報告・機能のご要望などは、下記フォームよりお送りください。
+        通常 <strong>2〜3営業日以内</strong> にご返信します。
+      </p>
+
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="name">お名前 <span class="required">必須</span></label>
+          <input type="text" id="name" name="name" placeholder="山田 太郎" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">メールアドレス <span class="required">必須</span></label>
+          <input type="email" id="email" name="email" placeholder="example@email.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="category">お問い合わせ種別 <span class="required">必須</span></label>
+          <select id="category" name="category" required>
+            <option value="" disabled selected>選択してください</option>
+            <option value="バグ・不具合の報告">バグ・不具合の報告</option>
+            <option value="操作方法について">操作方法について</option>
+            <option value="機能要望・ご提案">機能要望・ご提案</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="device">ご利用端末 <span class="required">必須</span></label>
+          <select id="device" name="device" required>
+            <option value="" disabled selected>選択してください</option>
+            <option value="iPhone">iPhone</option>
+            <option value="iPad">iPad</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="os">iOSバージョン（例: iOS 17.4）</label>
+          <input type="text" id="os" name="os" placeholder="iOS 17.4" />
+        </div>
+
+        <div class="form-group">
+          <label for="message">お問い合わせ内容 <span class="required">必須</span></label>
+          <textarea id="message" name="message" placeholder="お問い合わせの詳細をご記入ください。" required></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">送信する</button>
+
+        <p class="note">送信後、お使いのメールアプリが開きます。そのまま送信してください。</p>
+      </form>
+
+      <div id="success-msg">
+        ✅ メールアプリが開きました。内容を確認してそのまま送信してください。<br>
+        お問い合わせありがとうございます。
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- フッター -->
+<footer>
+  <p>特定保健指導 栄養・運動改善プランシステム</p>
+  <p style="margin-top:6px;">
+    お問い合わせ先: <a href="mailto:hrokajp@gmail.com">hrokajp@gmail.com</a>
+  </p>
+  <p style="margin-top:10px; opacity:0.7;">© 2024 特定保健指導サポート. All rights reserved.</p>
+</footer>
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name     = document.getElementById('name').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const category = document.getElementById('category').value;
+    const device   = document.getElementById('device').value;
+    const os       = document.getElementById('os').value.trim() || '未記入';
+    const message  = document.getElementById('message').value.trim();
+
+    const subject = encodeURIComponent('【特定保健指導サポート】' + category);
+    const body = encodeURIComponent(
+      'お名前: ' + name + '\n' +
+      '返信先メール: ' + email + '\n' +
+      '種別: ' + category + '\n' +
+      '端末: ' + device + '\n' +
+      'iOSバージョン: ' + os + '\n' +
+      '\n--- お問い合わせ内容 ---\n' +
+      message + '\n' +
+      '\n---\n' +
+      '送信元: 特定保健指導 サポートページ'
+    );
+
+    const mailtoLink = 'mailto:hrokajp@gmail.com?subject=' + subject + '&body=' + body;
+    window.location.href = mailtoLink;
+
+    // 送信ガイドメッセージを表示
+    document.getElementById('success-msg').style.display = 'block';
+    document.getElementById('success-msg').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  });
+
+  // スムーズスクロール
+  document.querySelectorAll('nav a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+
+</body>
+</html>

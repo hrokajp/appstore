@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>栄養計算 - サポート</title>
+  <style>
+    :root {
+      --green: #16a34a;
+      --green-dark: #15803d;
+      --green-light: #dcfce7;
+      --green-mid: #bbf7d0;
+      --text: #1a1a1a;
+      --text-secondary: #555;
+      --border: #e5e7eb;
+      --bg: #f9fafb;
+      --white: #ffffff;
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+                   "Noto Sans JP", "Yu Gothic", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.7;
+    }
+
+    /* ヘッダー */
+    header {
+      background: linear-gradient(145deg, #16a34a 0%, #0d9488 100%);
+      color: white;
+      padding: 56px 24px 48px;
+      text-align: center;
+    }
+
+    .app-icon {
+      width: 96px;
+      height: 96px;
+      border-radius: 22px;
+      background: linear-gradient(145deg, #22c55e 0%, #0d9488 100%);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 1rem;
+      opacity: 0.88;
+    }
+
+    /* コンテンツ */
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    section {
+      padding: 40px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-of-type { border-bottom: none; }
+
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    h2::before {
+      content: '';
+      display: inline-block;
+      width: 4px;
+      height: 1.3rem;
+      background: var(--green);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    /* アプリ概要 */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      text-align: center;
+    }
+
+    .feature-card .icon { font-size: 1.8rem; margin-bottom: 8px; }
+    .feature-card h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 4px; }
+    .feature-card p { font-size: 0.82rem; color: var(--text-secondary); }
+
+    /* FAQ */
+    .faq-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      padding: 16px 20px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      user-select: none;
+      font-size: 0.95rem;
+    }
+
+    .faq-q:hover { background: var(--green-light); }
+
+    .faq-q .arrow {
+      flex-shrink: 0;
+      font-size: 0.75rem;
+      color: var(--green);
+      transition: transform 0.2s;
+    }
+
+    .faq-a {
+      display: none;
+      padding: 0 20px 16px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    .faq-item.open .faq-a { display: block; }
+    .faq-item.open .arrow { transform: rotate(180deg); }
+
+    /* お問い合わせフォーム */
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    label span.req {
+      color: #dc2626;
+      margin-left: 4px;
+      font-size: 0.75rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: var(--white);
+      transition: border-color 0.2s;
+      color: var(--text);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(22,163,74,0.12);
+    }
+
+    textarea { resize: vertical; min-height: 140px; }
+
+    .submit-btn {
+      width: 100%;
+      padding: 15px;
+      background: var(--green);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, transform 0.1s;
+      font-family: inherit;
+    }
+
+    .submit-btn:hover { background: var(--green-dark); }
+    .submit-btn:active { transform: scale(0.98); }
+
+    .form-note {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    /* 送信完了メッセージ */
+    #success-msg {
+      display: none;
+      background: var(--green-light);
+      border: 1.5px solid var(--green-mid);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      color: var(--green-dark);
+      font-weight: 600;
+      margin-top: 16px;
+    }
+
+    /* プライバシーポリシー */
+    .policy-block {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px 24px;
+      margin-bottom: 14px;
+    }
+
+    .policy-block h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--green-dark);
+    }
+
+    .policy-block p, .policy-block ul {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+    }
+
+    .policy-block ul { padding-left: 1.2em; }
+    .policy-block li { margin-bottom: 4px; }
+
+    /* フッター */
+    footer {
+      text-align: center;
+      padding: 32px 20px;
+      font-size: 0.8rem;
+      color: #999;
+      border-top: 1px solid var(--border);
+    }
+
+    footer a { color: var(--green); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 480px) {
+      header { padding: 40px 20px 36px; }
+      header h1 { font-size: 1.6rem; }
+      .app-icon { width: 80px; height: 80px; font-size: 42px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header>
+  <div class="app-icon">🍽️</div>
+  <h1>栄養計算</h1>
+  <p>日本食品標準成分表（八訂）増補2023年版 対応<br>サポートページ</p>
+</header>
+
+<div class="container">
+
+  <!-- アプリ概要 -->
+  <section id="about">
+    <h2>アプリについて</h2>
+    <p style="margin-bottom:20px; font-size:0.95rem; color:var(--text-secondary);">
+      「栄養計算」は、文部科学省の日本食品標準成分表（八訂）増補2023年版に収録された
+      <strong>2,538品目</strong>の食材データをもとに、1日の献立を朝・昼・夕・間食に分けて管理し、
+      栄養素の摂取バランスを確認できるアプリです。
+    </p>
+    <div class="features">
+      <div class="feature-card">
+        <div class="icon">🥗</div>
+        <h3>2,538品目対応</h3>
+        <p>八訂増補2023年の全食材を網羅</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">📊</div>
+        <h3>17種類の栄養素</h3>
+        <p>エネルギー・PFCから微量栄養素まで</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">🍱</div>
+        <h3>献立管理</h3>
+        <p>朝・昼・夕・間食で複数献立を登録</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">👤</div>
+        <h3>プロフィール別目標</h3>
+        <p>年齢・性別別の食事摂取基準に対応</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- よくある質問 -->
+  <section id="faq">
+    <h2>よくある質問</h2>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        食材が見つかりません。どうすればいいですか？
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        食材名の一部（ひらがな・カタカナ・漢字）で検索してください。例えば「鶏」と入力すると鶏肉類が一覧表示されます。また、カテゴリフィルターを「すべて」にした上で検索するとより多くの候補が表示されます。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        栄養素の目標値はどのように決まりますか？
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        設定画面で「栄養素目標プロフィール」を選択できます。「男性 18〜64歳」「女性 18〜64歳」など年齢・性別別の目標値は、厚生労働省の「日本人の食事摂取基準（2020年版）」に基づいています。「カスタム」を選択すると、各栄養素の目標値を自由に入力できます。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        食材の分量はどうやって変更しますか？
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        献立カードの「選択」ボタンをタップしてアクティブにした後、「食材を追加」ボタンから食材を選ぶ際に分量（g）を入力するダイアログが表示されます。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        登録したデータは保存されますか？
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        現バージョンでは、アプリを終了するとデータはリセットされます。将来のアップデートでデータ保存機能の追加を予定しています。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        対応しているiOS・iPadOSのバージョンは？
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        iOS 26.0 以上、iPadOS 26.0 以上が必要です。iPhone・iPad の両方に対応しています。
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        食品データの出典はどこですか？
+        <span class="arrow">▼</span>
+      </div>
+      <div class="faq-a">
+        文部科学省が公表している「日本食品標準成分表（八訂）増補2023年版」のデータを使用しています。2,538品目・17種類の栄養素（エネルギー、たんぱく質、脂質、炭水化物、食物繊維、食塩相当量、カルシウム、鉄、ビタミンA、ビタミンD、ビタミンB1、ビタミンB2、ビタミンC、ビタミンE、葉酸、亜鉛、カリウム）を収録しています。
+      </div>
+    </div>
+  </section>
+
+  <!-- お問い合わせ -->
+  <section id="contact">
+    <h2>お問い合わせ</h2>
+    <p style="font-size:0.9rem; color:var(--text-secondary); margin-bottom:22px;">
+      ご不明な点・バグ報告・ご要望などは下記フォームよりお送りください。
+      通常 <strong>2〜3営業日以内</strong>にご返信します。
+    </p>
+
+    <form id="contact-form" onsubmit="sendMail(event)">
+      <div class="form-group">
+        <label>お名前<span class="req">*必須</span></label>
+        <input type="text" id="name" placeholder="例：山田 太郎" required>
+      </div>
+
+      <div class="form-group">
+        <label>メールアドレス<span class="req">*必須</span></label>
+        <input type="email" id="email" placeholder="例：example@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label>お問い合わせの種類<span class="req">*必須</span></label>
+        <select id="category" required>
+          <option value="" disabled selected>選択してください</option>
+          <option value="バグ報告">バグ・不具合の報告</option>
+          <option value="機能要望">機能のご要望</option>
+          <option value="使い方の質問">使い方についての質問</option>
+          <option value="データについて">食品データについて</option>
+          <option value="その他">その他</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>ご使用の端末</label>
+        <select id="device">
+          <option value="" selected>選択してください（任意）</option>
+          <option value="iPhone">iPhone</option>
+          <option value="iPad">iPad</option>
+          <option value="iPhone・iPad 両方">iPhone・iPad 両方</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>お問い合わせ内容<span class="req">*必須</span></label>
+        <textarea id="message" placeholder="できるだけ詳しくお書きください。バグ報告の場合は、再現手順や発生状況もお知らせいただけると助かります。" required></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">メールで送信する</button>
+      <p class="form-note">送信ボタンを押すと、メールアプリが起動します。</p>
+    </form>
+
+    <div id="success-msg">
+      ✅ メールアプリが起動しました。内容をご確認の上、送信してください。<br>
+      お問い合わせありがとうございます。
+    </div>
+  </section>
+
+  <!-- プライバシーポリシー -->
+  <section id="privacy">
+    <h2>プライバシーポリシー</h2>
+
+    <div class="policy-block">
+      <h3>収集する情報</h3>
+      <p>本アプリは、ユーザーの個人情報を自動的に収集しません。お問い合わせフォームからご連絡いただいた場合のみ、返信のためにお名前とメールアドレスを使用します。</p>
+    </div>
+
+    <div class="policy-block">
+      <h3>アプリ内のデータ</h3>
+      <p>入力した献立・食材データは端末内にのみ保存されます（現バージョンではセッション中のみ）。外部サーバーへの送信は一切行いません。</p>
+    </div>
+
+    <div class="policy-block">
+      <h3>広告・トラッキング</h3>
+      <p>本アプリは広告を表示せず、ユーザーのトラッキングも行いません。</p>
+    </div>
+
+    <div class="policy-block">
+      <h3>第三者への提供</h3>
+      <p>収集した情報を第三者に販売・提供することはありません。</p>
+    </div>
+
+    <div class="policy-block">
+      <h3>お問い合わせ</h3>
+      <p>プライバシーに関するご質問は <a href="mailto:hrokajp@gmail.com" style="color:var(--green);">hrokajp@gmail.com</a> までご連絡ください。</p>
+    </div>
+
+    <p style="font-size:0.8rem; color:#999; margin-top:14px;">最終更新日：2026年3月24日</p>
+  </section>
+
+</div><!-- /.container -->
+
+<footer>
+  <p>© 2026 栄養計算 &nbsp;|&nbsp;
+     <a href="mailto:hrokajp@gmail.com">hrokajp@gmail.com</a>
+  </p>
+  <p style="margin-top:6px;">
+    <a href="#faq">FAQ</a> &nbsp;·&nbsp;
+    <a href="#contact">お問い合わせ</a> &nbsp;·&nbsp;
+    <a href="#privacy">プライバシーポリシー</a>
+  </p>
+</footer>
+
+<script>
+  // FAQ アコーディオン
+  function toggleFaq(el) {
+    el.parentElement.classList.toggle('open');
+  }
+
+  // メール送信（mailto リンク生成）
+  function sendMail(e) {
+    e.preventDefault();
+
+    var name     = document.getElementById('name').value.trim();
+    var email    = document.getElementById('email').value.trim();
+    var category = document.getElementById('category').value;
+    var device   = document.getElementById('device').value;
+    var message  = document.getElementById('message').value.trim();
+
+    if (!name || !email || !category || !message) return;
+
+    var subject = encodeURIComponent('[栄養計算サポート] ' + category);
+
+    var body = '■ お名前\n' + name + '\n\n'
+             + '■ メールアドレス\n' + email + '\n\n'
+             + '■ 種類\n' + category + '\n\n'
+             + (device ? '■ 端末\n' + device + '\n\n' : '')
+             + '■ 内容\n' + message;
+
+    var mailtoLink = 'mailto:hrokajp@gmail.com'
+                   + '?subject=' + subject
+                   + '&body=' + encodeURIComponent(body);
+
+    window.location.href = mailtoLink;
+
+    document.getElementById('success-msg').style.display = 'block';
+    document.getElementById('contact-form').style.opacity = '0.5';
+    document.getElementById('contact-form').style.pointerEvents = 'none';
+
+    setTimeout(function() {
+      document.getElementById('contact-form').style.opacity = '1';
+      document.getElementById('contact-form').style.pointerEvents = 'auto';
+      document.getElementById('success-msg').style.display = 'none';
+      document.getElementById('contact-form').reset();
+    }, 6000);
+  }
+</script>
+
+</body>
+</html>

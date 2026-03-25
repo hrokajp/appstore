@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>健康診断アドバイザー — サポート</title>
+  <meta name="description" content="健康診断アドバイザー アプリのサポートページ。よくある質問やお問い合わせはこちらから。">
+  <style>
+    :root {
+      --blue-dark:   #0a4d8c;
+      --blue:        #1a73e8;
+      --blue-light:  #4fa3f7;
+      --blue-pale:   #e8f1fd;
+      --accent:      #e74c3c;
+      --text:        #1a1a2e;
+      --text-muted:  #555577;
+      --bg:          #f5f8ff;
+      --white:       #ffffff;
+      --radius:      14px;
+      --shadow:      0 4px 24px rgba(26,115,232,.12);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+                   "Noto Sans JP", "Yu Gothic", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* ── ヘッダー ─────────────────────────────────── */
+    header {
+      background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 60%, var(--blue-light) 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 56px 20px 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: "";
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.07);
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      bottom: -80px; left: -40px;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.05);
+    }
+    .app-icon {
+      width: 96px; height: 96px;
+      border-radius: 22px;
+      background: linear-gradient(145deg, #1a73e8, #0a4d8c);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 48px;
+      box-shadow: 0 8px 32px rgba(0,0,0,.25);
+      margin-bottom: 20px;
+    }
+    header h1 { font-size: clamp(1.6rem, 5vw, 2.4rem); font-weight: 700; margin-bottom: 8px; }
+    header p  { font-size: 1rem; opacity: .85; max-width: 480px; margin: 0 auto; }
+
+    /* ── レイアウト ────────────────────────────────── */
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 16px 80px;
+    }
+
+    /* ── セクション共通 ───────────────────────────── */
+    section { margin-bottom: 48px; }
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--blue-dark);
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--blue-pale);
+    }
+    h2 .icon { font-size: 1.4rem; }
+
+    /* ── アプリ説明 ────────────────────────────────── */
+    .app-desc {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .app-desc p { color: var(--text-muted); }
+    .badge-list {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      margin-top: 14px;
+    }
+    .badge {
+      background: var(--blue-pale);
+      color: var(--blue-dark);
+      border-radius: 20px;
+      padding: 4px 14px;
+      font-size: .85rem;
+      font-weight: 600;
+    }
+
+    /* ── FAQ ───────────────────────────────────────── */
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    details {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: box-shadow .2s;
+    }
+    details[open] { box-shadow: 0 6px 28px rgba(26,115,232,.18); }
+    summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 18px 20px;
+      font-weight: 600;
+      color: var(--blue-dark);
+      display: flex; justify-content: space-between; align-items: center;
+      user-select: none;
+    }
+    summary::-webkit-details-marker { display: none; }
+    summary::after {
+      content: "＋";
+      font-size: 1.2rem;
+      color: var(--blue);
+      flex-shrink: 0;
+      transition: transform .25s;
+    }
+    details[open] summary::after { transform: rotate(45deg); }
+    .faq-body {
+      padding: 0 20px 18px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--blue-pale);
+      padding-top: 14px;
+    }
+
+    /* ── プライバシー ──────────────────────────────── */
+    .privacy-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+    .privacy-card p { color: var(--text-muted); margin-bottom: 10px; }
+    .privacy-card p:last-child { margin-bottom: 0; }
+    .highlight {
+      background: var(--blue-pale);
+      border-left: 4px solid var(--blue);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      margin: 12px 0;
+      color: var(--blue-dark);
+      font-weight: 600;
+    }
+
+    /* ── お問い合わせフォーム ─────────────────────── */
+    .contact-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px 28px 32px;
+      box-shadow: var(--shadow);
+    }
+    .contact-card p.lead {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: .95rem;
+    }
+    .form-group { margin-bottom: 18px; }
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: .9rem;
+      margin-bottom: 6px;
+      color: var(--blue-dark);
+    }
+    label .req {
+      color: var(--accent);
+      margin-left: 4px;
+      font-size: .8rem;
+    }
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      border: 1.5px solid #d0ddf5;
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 1rem;
+      font-family: inherit;
+      color: var(--text);
+      background: #fafcff;
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(26,115,232,.15);
+      background: #fff;
+    }
+    textarea { resize: vertical; min-height: 130px; }
+    select { cursor: pointer; }
+
+    /* 送信ボタン */
+    .btn-send {
+      display: block;
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(26,115,232,.35);
+      transition: opacity .2s, transform .1s;
+      margin-top: 8px;
+      font-family: inherit;
+    }
+    .btn-send:hover  { opacity: .92; }
+    .btn-send:active { transform: scale(.98); }
+    .btn-send::before { content: "✉️ "; }
+
+    .note {
+      font-size: .8rem;
+      color: var(--text-muted);
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    /* ── フッター ─────────────────────────────────── */
+    footer {
+      background: var(--blue-dark);
+      color: rgba(255,255,255,.7);
+      text-align: center;
+      padding: 24px 16px;
+      font-size: .85rem;
+    }
+    footer a { color: var(--blue-light); text-decoration: none; }
+
+    /* ── レスポンシブ ──────────────────────────────── */
+    @media (max-width: 600px) {
+      main { padding: 28px 12px 60px; }
+      .contact-card { padding: 20px 16px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── ヘッダー ─────────────────────────────────────── -->
+<header>
+  <div class="app-icon">🫀</div>
+  <h1>健康診断アドバイザー</h1>
+  <p>健康診断の数値を入力して、AIによるアドバイスと改善提案を受け取れるアプリのサポートページです。</p>
+</header>
+
+<main>
+
+  <!-- ── アプリについて ─────────────────────────────── -->
+  <section>
+    <h2><span class="icon">📱</span>アプリについて</h2>
+    <div class="app-desc">
+      <p>
+        「健康診断アドバイザー」は、健康診断で測定した数値（血圧・血糖・コレステロール・肝機能・腎機能など）を入力することで、各項目の評価と生活習慣の改善アドバイスを確認できるiPhone・iPad向けアプリです。
+      </p>
+      <div class="badge-list">
+        <span class="badge">iOS 26.0+</span>
+        <span class="badge">iPhone / iPad</span>
+        <span class="badge">日本語</span>
+        <span class="badge">無料</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── よくある質問 ───────────────────────────────── -->
+  <section>
+    <h2><span class="icon">❓</span>よくある質問</h2>
+    <div class="faq-list">
+
+      <details>
+        <summary>アプリは無料ですか？</summary>
+        <div class="faq-body">
+          はい、完全無料でご利用いただけます。課金要素・広告は一切ありません。
+        </div>
+      </details>
+
+      <details>
+        <summary>入力したデータはどこに保存されますか？</summary>
+        <div class="faq-body">
+          入力データはお使いのデバイス内のみで処理されます。外部サーバーへの送信・クラウド保存は一切行っておりません。
+        </div>
+      </details>
+
+      <details>
+        <summary>医療的な診断として利用できますか？</summary>
+        <div class="faq-body">
+          本アプリは健康管理の参考情報を提供するものであり、医療診断・治療の代替にはなりません。体の異常を感じた場合は必ず医療機関を受診してください。
+        </div>
+      </details>
+
+      <details>
+        <summary>数値の入力がうまくできません。</summary>
+        <div class="faq-body">
+          各入力欄をタップするとテンキーパッドが表示されます。入力が完了したら「完了」ボタンでキーボードを閉じてください。小数点は「.」ボタンを使用します。
+        </div>
+      </details>
+
+      <details>
+        <summary>結果を共有・印刷するには？</summary>
+        <div class="faq-body">
+          分析結果画面の右上にある共有ボタン（□↑）からテキスト共有が可能です。印刷ボタン（🖨️）からAirPrintに対応したプリンターへの印刷もできます。
+        </div>
+      </details>
+
+      <details>
+        <summary>対応機種・OSを教えてください。</summary>
+        <div class="faq-body">
+          iOS / iPadOS 26.0 以降を搭載したiPhone・iPadでご利用いただけます。
+        </div>
+      </details>
+
+      <details>
+        <summary>BMIが自動計算されないのですが。</summary>
+        <div class="faq-body">
+          BMIは「身長」と「体重」の両方を入力することで自動計算されます。いずれかが空欄の場合は表示されません。
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ── プライバシーポリシー ───────────────────────── -->
+  <section id="privacy">
+    <h2><span class="icon">🔒</span>プライバシーポリシー</h2>
+    <div class="privacy-card">
+      <div class="highlight">
+        本アプリはユーザーの個人情報・健康データを一切収集・送信しません。
+      </div>
+      <p>入力された健康診断数値はすべてデバイス内のメモリ上のみで処理され、アプリを閉じると消去されます。</p>
+      <p>本アプリは以下のデータを収集しません：</p>
+      <ul style="padding-left:1.4em; color:var(--text-muted); margin:10px 0;">
+        <li>氏名・住所などの個人識別情報</li>
+        <li>健康診断数値・病歴などの医療情報</li>
+        <li>位置情報・デバイス識別子</li>
+        <li>使用状況・クラッシュレポート（サードパーティ含む）</li>
+      </ul>
+      <p>インターネット接続は一切使用しません。広告ネットワーク・アナリティクスSDKも組み込まれていません。</p>
+      <p style="margin-top:14px; font-size:.85rem;">
+        最終更新: 2026年3月 ／ 制作者: ハル
+      </p>
+    </div>
+  </section>
+
+  <!-- ── お問い合わせフォーム ────────────────────────── -->
+  <section id="contact">
+    <h2><span class="icon">✉️</span>お問い合わせ</h2>
+    <div class="contact-card">
+      <p class="lead">
+        アプリに関するご質問・ご要望・不具合のご報告はこちらからどうぞ。通常2〜3営業日以内にご返信いたします。
+      </p>
+
+      <form
+        action="mailto:hrokajp@gmail.com"
+        method="get"
+        enctype="text/plain"
+        onsubmit="return buildMailto(this)">
+
+        <div class="form-group">
+          <label>お名前<span class="req">※必須</span></label>
+          <input type="text" name="name" id="name" placeholder="山田 太郎" required>
+        </div>
+
+        <div class="form-group">
+          <label>メールアドレス<span class="req">※必須</span></label>
+          <input type="email" name="email" id="email" placeholder="example@example.com" required>
+        </div>
+
+        <div class="form-group">
+          <label>ご利用の機種</label>
+          <select name="device" id="device">
+            <option value="">選択してください（任意）</option>
+            <option value="iPhone">iPhone</option>
+            <option value="iPad">iPad</option>
+            <option value="iPhone/iPad両方">iPhone・iPad 両方</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>お問い合わせの種類<span class="req">※必須</span></label>
+          <select name="category" id="category" required>
+            <option value="">選択してください</option>
+            <option value="不具合・バグ報告">不具合・バグ報告</option>
+            <option value="使い方のご質問">使い方のご質問</option>
+            <option value="機能のご要望">機能のご要望</option>
+            <option value="プライバシーに関するご質問">プライバシーに関するご質問</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>お問い合わせ内容<span class="req">※必須</span></label>
+          <textarea name="body" id="body" placeholder="詳しい状況や再現手順をお知らせください。" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-send">メールを送信する</button>
+
+        <p class="note">
+          送信ボタンを押すとメールアプリが開きます。そのまま送信してください。<br>
+          直接メールでの連絡: <a href="mailto:hrokajp@gmail.com">hrokajp@gmail.com</a>
+        </p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── フッター ─────────────────────────────────────── -->
+<footer>
+  <p>© 2026 健康診断アドバイザー — 制作: ハル</p>
+  <p style="margin-top:6px;">
+    <a href="#privacy">プライバシーポリシー</a> ／ <a href="#contact">お問い合わせ</a>
+  </p>
+</footer>
+
+<script>
+  /**
+   * フォームの内容を mailto: リンクに変換して開く
+   * (HTMLフォームのmailto送信はボディが正しく渡らないブラウザがあるため JS で補完)
+   */
+  function buildMailto(form) {
+    const name     = document.getElementById('name').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const device   = document.getElementById('device').value;
+    const category = document.getElementById('category').value;
+    const body     = document.getElementById('body').value.trim();
+
+    if (!name || !email || !category || !body) return false;
+
+    const subject = encodeURIComponent(`【健康診断アドバイザー】${category}`);
+
+    const bodyText = [
+      `■ お名前: ${name}`,
+      `■ メールアドレス: ${email}`,
+      `■ ご利用機種: ${device || '未回答'}`,
+      `■ 種類: ${category}`,
+      '',
+      '■ お問い合わせ内容:',
+      body,
+      '',
+      '---',
+      'このメールは健康診断アドバイザー サポートページより送信されました。'
+    ].join('\n');
+
+    window.location.href =
+      `mailto:hrokajp@gmail.com?subject=${subject}&body=${encodeURIComponent(bodyText)}`;
+
+    return false; // フォームのデフォルト送信を抑制
+  }
+
+  // FAQ: 同時に複数開かないようにする（任意の動作）
+  document.querySelectorAll('details').forEach(el => {
+    el.addEventListener('toggle', () => {
+      if (el.open) {
+        document.querySelectorAll('details').forEach(other => {
+          if (other !== el) other.open = false;
+        });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

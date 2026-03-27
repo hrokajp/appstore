@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>食事摂取基準2025 - サポート & プライバシーポリシー</title>
+  <meta name="description" content="食事摂取基準2025アプリのサポートページ。お問い合わせ・プライバシーポリシーをご確認いただけます。">
+  <style>
+    :root {
+      --green-900: #1B4332;
+      --green-700: #2D6A4F;
+      --green-600: #40916C;
+      --green-500: #52B788;
+      --green-300: #95D5B2;
+      --green-100: #D8F3DC;
+      --green-50:  #F0FAF3;
+      --text-dark: #1A1A2E;
+      --text-mid:  #444;
+      --text-light:#666;
+      --border:    #D0E8DA;
+      --white:     #FFFFFF;
+      --shadow: 0 2px 16px rgba(45,106,79,0.10);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Hiragino Kaku Gothic ProN",
+                   "Noto Sans JP", "Yu Gothic", sans-serif;
+      color: var(--text-dark);
+      background: var(--white);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: linear-gradient(135deg, var(--green-900) 0%, var(--green-700) 60%, var(--green-600) 100%);
+      color: var(--white);
+      padding: 0;
+    }
+    .header-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 48px 24px 40px;
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .app-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 18px;
+      background: var(--green-50);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      flex-shrink: 0;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    }
+    .header-text h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .header-text p {
+      margin-top: 6px;
+      font-size: 13px;
+      color: var(--green-300);
+      font-weight: 400;
+    }
+
+    /* ── NAV ── */
+    nav {
+      background: var(--green-900);
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    .nav-inner {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      gap: 0;
+    }
+    nav a {
+      display: block;
+      padding: 14px 20px;
+      color: var(--green-300);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      transition: color 0.2s, background 0.2s;
+      border-bottom: 3px solid transparent;
+    }
+    nav a:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.06);
+      border-bottom-color: var(--green-500);
+    }
+
+    /* ── MAIN ── */
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    section {
+      margin-bottom: 64px;
+    }
+
+    /* ── SECTION HEADERS ── */
+    .section-label {
+      display: inline-block;
+      background: var(--green-100);
+      color: var(--green-700);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--green-900);
+      margin-bottom: 6px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--green-100);
+    }
+    h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--green-700);
+      margin: 28px 0 8px;
+    }
+    p { margin-bottom: 12px; color: var(--text-mid); }
+    ul, ol { margin: 8px 0 12px 20px; color: var(--text-mid); }
+    li { margin-bottom: 4px; }
+
+    /* ── FAQ CARDS ── */
+    .faq-list { margin-top: 20px; }
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .faq-q {
+      width: 100%;
+      background: var(--green-50);
+      border: none;
+      padding: 16px 20px;
+      text-align: left;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--green-900);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      transition: background 0.2s;
+    }
+    .faq-q:hover { background: var(--green-100); }
+    .faq-q .arrow {
+      font-size: 12px;
+      color: var(--green-600);
+      transition: transform 0.25s;
+      flex-shrink: 0;
+    }
+    .faq-q[aria-expanded="true"] .arrow { transform: rotate(180deg); }
+    .faq-a {
+      display: none;
+      padding: 14px 20px 16px;
+      font-size: 14px;
+      color: var(--text-mid);
+      border-top: 1px solid var(--border);
+      background: var(--white);
+    }
+    .faq-a.open { display: block; }
+
+    /* ── CONTACT FORM ── */
+    .contact-card {
+      background: var(--green-50);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      margin-top: 20px;
+    }
+    .contact-card p {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+    }
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--green-800, #1e4d35);
+      margin-bottom: 6px;
+    }
+    label .required {
+      color: #e53e3e;
+      margin-left: 4px;
+    }
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--text-dark);
+      background: var(--white);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    select:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--green-600);
+      box-shadow: 0 0 0 3px rgba(82,183,136,0.18);
+    }
+    textarea { resize: vertical; min-height: 120px; }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2340916C' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+    .send-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--green-700), var(--green-600));
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      padding: 13px 28px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+      text-decoration: none;
+    }
+    .send-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+    .send-btn:active { transform: translateY(0); }
+
+    .note-box {
+      background: #FFF8E1;
+      border-left: 4px solid #F6C800;
+      border-radius: 0 8px 8px 0;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #5a4a00;
+      margin-top: 16px;
+    }
+
+    /* ── PRIVACY POLICY ── */
+    #privacy {
+      scroll-margin-top: 70px;
+    }
+    .privacy-meta {
+      font-size: 13px;
+      color: var(--text-light);
+      margin-bottom: 20px;
+      padding: 12px 16px;
+      background: var(--green-50);
+      border-radius: 8px;
+      border-left: 4px solid var(--green-300);
+    }
+    .policy-section {
+      margin: 24px 0;
+      padding: 20px 22px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--white);
+    }
+    .policy-section h3 {
+      margin-top: 0;
+      font-size: 15px;
+      color: var(--green-900);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .policy-section h3::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green-500);
+      flex-shrink: 0;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--green-900);
+      color: var(--green-300);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 12px;
+    }
+    footer a { color: var(--green-300); text-decoration: none; }
+    footer a:hover { color: var(--white); }
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 540px) {
+      .header-inner { flex-direction: column; align-items: flex-start; gap: 16px; padding: 36px 20px 28px; }
+      .header-text h1 { font-size: 22px; }
+      nav a { padding: 13px 14px; font-size: 12px; }
+      main { padding: 32px 16px 64px; }
+      .contact-card { padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<header>
+  <div class="header-inner">
+    <div class="app-icon">🍽️</div>
+    <div class="header-text">
+      <h1>食事摂取基準2025</h1>
+      <p>Dietary Reference Intakes Japan 2025 — サポートページ</p>
+    </div>
+  </div>
+  <nav>
+    <div class="nav-inner">
+      <a href="#faq">よくある質問</a>
+      <a href="#contact">お問い合わせ</a>
+      <a href="#privacy">プライバシーポリシー</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ═══════════════ MAIN ═══════════════ -->
+<main>
+
+  <!-- ─── FAQ ─── -->
+  <section id="faq">
+    <span class="section-label">FAQ</span>
+    <h2>よくある質問</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span>このアプリのデータはどこから来ていますか？</span>
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          厚生労働省が策定・公表した「日本人の食事摂取基準（2025年版）」に基づいてデータを収録しています。アプリ内のすべての栄養素参照値は同資料に準拠しています。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span>プロフィール情報はどこに保存されますか？</span>
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          年齢区分・性別・活動量などのプロフィール情報は、お使いのデバイス内にのみ保存されます。外部サーバーへの送信は一切行いません。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span>インターネット接続がなくても使えますか？</span>
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          はい、本アプリは完全オフラインで動作します。すべての栄養データはアプリ内に収録されており、ネットワーク接続は不要です。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span>妊婦・授乳婦の数値は表示されますか？</span>
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          はい、設定画面で性別を「女性」に設定後、「妊婦」または「授乳婦」のトグルをオンにすると、付加量を加算した推奨値が表示されます。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span>ブックマークしたデータが消えてしまいました。</span>
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          ブックマークデータはデバイス内のストレージに保存されています。アプリを削除すると合わせて削除されます。デバイスの移行（機種変更など）の際もデータは引き継がれませんのでご注意ください。
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">
+          <span>このアプリで医療・診断の代わりになりますか？</span>
+          <span class="arrow">▼</span>
+        </button>
+        <div class="faq-a">
+          なりません。本アプリは健康情報の参照・学習を目的としており、医療・診断・治療を目的とするものではありません。健康上の問題については、必ず医師・管理栄養士などの専門家にご相談ください。
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── CONTACT ─── -->
+  <section id="contact">
+    <span class="section-label">Contact</span>
+    <h2>お問い合わせ</h2>
+    <div class="contact-card">
+      <p>ご不明な点・バグ報告・ご要望などは、下記フォームよりお気軽にお問い合わせください。
+        通常<strong>3〜5営業日以内</strong>にご返信いたします。</p>
+
+      <form id="contactForm" onsubmit="sendEmail(event)">
+        <div class="form-group">
+          <label for="name">お名前<span class="required">*</span></label>
+          <input type="text" id="name" name="name" placeholder="山田 太郎" required>
+        </div>
+        <div class="form-group">
+          <label for="email">メールアドレス<span class="required">*</span></label>
+          <input type="email" id="email" name="email" placeholder="your@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="device">使用デバイス</label>
+          <select id="device" name="device">
+            <option value="">選択してください（任意）</option>
+            <option value="iPhone">iPhone</option>
+            <option value="iPad">iPad</option>
+            <option value="iPhone + iPad">iPhone と iPad 両方</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="category">お問い合わせ種別<span class="required">*</span></label>
+          <select id="category" name="category" required>
+            <option value="">選択してください</option>
+            <option value="バグ報告">バグ・不具合の報告</option>
+            <option value="機能要望">機能追加・改善要望</option>
+            <option value="データの誤り">データの誤り・修正依頼</option>
+            <option value="使い方">使い方について</option>
+            <option value="その他">その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">お問い合わせ内容<span class="required">*</span></label>
+          <textarea id="message" name="message"
+            placeholder="詳細をできるだけ具体的にご記入ください。バグの場合はアプリバージョン・OS バージョンもご記入いただけると助かります。"
+            required></textarea>
+        </div>
+
+        <button type="submit" class="send-btn">
+          <span>📧</span>
+          <span>メールアプリで送信する</span>
+        </button>
+
+        <div class="note-box">
+          ⚠️ 送信ボタンを押すとメールアプリが起動します。件名・本文が自動入力されますので、そのまま送信してください。
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ─── PRIVACY POLICY ─── -->
+  <section id="privacy">
+    <span class="section-label">Privacy Policy</span>
+    <h2>プライバシーポリシー</h2>
+    <div class="privacy-meta">
+      制定日：2025年　／　最終更新：2025年　／　適用アプリ：食事摂取基準2025（iOS / iPadOS）
+    </div>
+
+    <p>「食事摂取基準2025」（以下「本アプリ」）は、ユーザーのプライバシーを尊重し、個人情報の適切な取り扱いに努めます。本ポリシーは、本アプリにおける情報の収集・利用・管理方針を説明するものです。</p>
+
+    <div class="policy-section">
+      <h3>1. 収集する情報</h3>
+      <p>本アプリはユーザーが任意で入力・設定した以下の情報をデバイス内に保存します。</p>
+      <ul>
+        <li>年齢区分・性別・身体活動レベル（プロフィール情報）</li>
+        <li>妊婦・授乳婦設定</li>
+        <li>ブックマーク（お気に入り）に登録した栄養素の一覧</li>
+      </ul>
+      <p>これらの情報は、お使いのデバイス内にのみ保存されます。</p>
+    </div>
+
+    <div class="policy-section">
+      <h3>2. 情報の利用目的</h3>
+      <p>収集した情報は以下の目的にのみ使用します。</p>
+      <ul>
+        <li>ユーザーのプロフィールに合わせたエネルギー推奨量・栄養素参照値の表示</li>
+        <li>ブックマーク機能の提供</li>
+        <li>前回起動時の設定の復元</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h3>3. 情報の第三者提供・外部送信</h3>
+      <p>本アプリは、ユーザーの情報を外部サーバーに送信せず、第三者に提供・販売・共有することは一切ありません。</p>
+      <ul>
+        <li>広告SDK：<strong>不使用</strong></li>
+        <li>アクセス解析SDK（Firebase、Amplitude等）：<strong>不使用</strong></li>
+        <li>クラッシュレポートSDK（Crashlytics等）：<strong>不使用</strong></li>
+        <li>ネットワーク通信：<strong>なし</strong>（完全オフライン動作）</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h3>4. データの保存・削除</h3>
+      <p>保存データはすべてお使いのデバイス内に保存されます。データを削除するには、デバイスの設定アプリから本アプリのデータをリセットするか、本アプリをアンインストールしてください。アンインストールにより、保存されたすべてのデータは削除されます。</p>
+    </div>
+
+    <div class="policy-section">
+      <h3>5. アクセス権限</h3>
+      <p>本アプリは以下の権限を必要としません。</p>
+      <ul>
+        <li>カメラ・マイク</li>
+        <li>位置情報</li>
+        <li>連絡先・カレンダー</li>
+        <li>写真ライブラリ</li>
+        <li>ヘルスケアデータ（HealthKit）</li>
+        <li>プッシュ通知</li>
+      </ul>
+    </div>
+
+    <div class="policy-section">
+      <h3>6. 子どもの個人情報</h3>
+      <p>本アプリは全年齢（4+）を対象としており、13歳未満の子どもから意図的に個人情報を収集することはありません。</p>
+    </div>
+
+    <div class="policy-section">
+      <h3>7. 免責事項</h3>
+      <p>本アプリが提供する栄養情報は、厚生労働省「日本人の食事摂取基準（2025年版）」に基づいた参照情報であり、医療・診断・治療を目的とするものではありません。健康上の問題・不安については、医師・管理栄養士などの専門家にご相談ください。</p>
+    </div>
+
+    <div class="policy-section">
+      <h3>8. ポリシーの変更</h3>
+      <p>本ポリシーの内容は、必要に応じて変更することがあります。変更後のポリシーは、このページに掲載した時点から効力を生じるものとします。重要な変更がある場合は、アプリのアップデートノートでお知らせします。</p>
+    </div>
+
+    <div class="policy-section">
+      <h3>9. お問い合わせ</h3>
+      <p>本プライバシーポリシーに関するご質問・ご意見は、下記のメールアドレスまでお問い合わせください。</p>
+      <p>
+        <strong>開発者：</strong>Haru<br>
+        <strong>メールアドレス：</strong>
+        <a href="mailto:hrokajp@gmail.com" style="color: var(--green-700); font-weight: 600;">hrokajp@gmail.com</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="footer-links">
+    <a href="#faq">よくある質問</a>
+    <a href="#contact">お問い合わせ</a>
+    <a href="#privacy">プライバシーポリシー</a>
+    <a href="mailto:hrokajp@gmail.com">hrokajp@gmail.com</a>
+  </div>
+  <p>© 2025 Haru. All rights reserved.</p>
+  <p style="margin-top: 6px; font-size: 11px; color: #5a8a6a;">食事摂取基準2025 — 厚生労働省「日本人の食事摂取基準（2025年版）」準拠</p>
+</footer>
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<script>
+  /* FAQ アコーディオン */
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = btn.getAttribute('aria-expanded') === 'true';
+    // Close all
+    document.querySelectorAll('.faq-q').forEach(b => {
+      b.setAttribute('aria-expanded', 'false');
+      b.nextElementSibling.classList.remove('open');
+    });
+    // Open clicked (unless it was already open)
+    if (!isOpen) {
+      btn.setAttribute('aria-expanded', 'true');
+      answer.classList.add('open');
+    }
+  }
+
+  /* お問い合わせフォーム → mailto */
+  function sendEmail(e) {
+    e.preventDefault();
+    const name     = document.getElementById('name').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const device   = document.getElementById('device').value;
+    const category = document.getElementById('category').value;
+    const message  = document.getElementById('message').value.trim();
+
+    const subject = encodeURIComponent(`【食事摂取基準2025】${category} — ${name}`);
+    const body = encodeURIComponent(
+      `お名前: ${name}\n` +
+      `メールアドレス: ${email}\n` +
+      `使用デバイス: ${device || '未選択'}\n` +
+      `種別: ${category}\n` +
+      `\n──────────────────\n` +
+      `${message}\n` +
+      `──────────────────\n` +
+      `\n※ このメールは「食事摂取基準2025」サポートページから送信されました。`
+    );
+
+    window.location.href = `mailto:hrokajp@gmail.com?subject=${subject}&body=${body}`;
+  }
+
+  /* アクティブナビ（スクロール連動） */
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 80) current = s.id;
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === `#${current}`
+        ? 'var(--white)' : '';
+      a.style.borderBottomColor = a.getAttribute('href') === `#${current}`
+        ? 'var(--green-500)' : 'transparent';
+    });
+  }, { passive: true });
+</script>
+</body>
+</html>

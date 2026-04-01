@@ -31,24 +31,35 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
         }
+        /* リンク全体をカードとして装飾 */
+        .app-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
         .app-card {
             background: #fff;
             padding: 20px;
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            height: 100%;
+            box-sizing: border-box;
+            border: 2px solid transparent;
         }
-        .app-card:hover {
+        .app-link:hover .app-card {
             transform: translateY(-5px);
+            border-color: #3498db;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
         .app-icon {
             width: 100px;
             height: 100px;
-            border-radius: 22px; /* iOS風の角丸 */
+            border-radius: 22px;
             margin-bottom: 15px;
             object-fit: cover;
-            background-color: #eee; /* 画像がない時の予備色 */
+            background-color: #eee;
             border: 1px solid #ddd;
         }
         .app-name {
@@ -56,6 +67,7 @@
             font-size: 1.1em;
             margin-bottom: 8px;
             display: block;
+            color: #2c3e50;
         }
         .platform-tag {
             display: inline-block;
@@ -66,46 +78,64 @@
             font-size: 0.8em;
             font-weight: bold;
         }
+        .click-info {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.75em;
+            color: #3498db;
+        }
     </style>
 </head>
 <body>
 
-    <h1>提供しているアプリ [cite: 1]</h1>
-    
     <div class="intro">
-        栄養士知識を活かして、栄養士向けのiPhone/iPadアプリをAppStoreで提供しています。[cite: 1]
-    </div>
+        食で健康を考えるiPhone/iPadアプリをAppStoreで提供しています。    </div>
 
     <div class="app-grid">
-        <div class="app-card">
-            <img src="icon_seibun.png" alt="みんなの食品成分表 アイコン" class="app-icon">
-            <span class="app-name">みんなの食品成分表 [cite: 2]</span>
-            <span class="platform-tag">iPhone / iPad</span>
-        </div>
+        <a href="https://apps.apple.com/app/id6761083257" class="app-link">
+            <div class="app-card">
+                <img src="icon_seibun.png" alt="みんなの食品成分表" class="app-icon">
+                <span class="app-name">みんなの食品成分表</span>
+                <span class="platform-tag">iPhone / iPad</span>
+                <span class="click-info">App Storeを開く</span>
+            </div>
+        </a>
 
-        <div class="app-card">
-            <img src="icon_kijun.png" alt="みんなの食事摂取基準2025 アイコン" class="app-icon">
-            <span class="app-name">みんなの食事摂取基準2025 [cite: 3]</span>
-            <span class="platform-tag">iPhone / iPad</span>
-        </div>
+        <a href="https://apps.apple.com/app/id6761282657" class="app-link">
+            <div class="app-card">
+                <img src="icon_kijun.png" alt="みんなの食事摂取基準2025" class="app-icon">
+                <span class="app-name">みんなの食事摂取基準2025</span>
+                <span class="platform-tag">iPhone / iPad</span>
+                <span class="click-info">App Storeを開く</span>
+            </div>
+        </a>
 
-        <div class="app-card">
-            <img src="icon_kondate.png" alt="みんなの献立作成 アイコン" class="app-icon">
-            <span class="app-name">みんなの献立作成 [cite: 4]</span>
-            <span class="platform-tag">iPhone / iPad</span>
-        </div>
+        <a href="https://apps.apple.com/app/id6761052302" class="app-link">
+            <div class="app-card">
+                <img src="icon_kondate.png" alt="みんなの献立作成" class="app-icon">
+                <span class="app-name">みんなの献立作成</span>
+                <span class="platform-tag">iPad</span>
+                <span class="click-info">App Storeを開く</span>
+            </div>
+        </a>
 
-        <div class="app-card">
-            <img src="icon_hoken.png" alt="みんなの特定保健指導 アイコン" class="app-icon">
-            <span class="app-name">みんなの特定保健指導 [cite: 5]</span>
-            <span class="platform-tag">iPhone / iPad</span>
-        </div>
+        <a href="https://apps.apple.com/app/id6761037190" class="app-link">
+            <div class="app-card">
+                <img src="icon_hoken.png" alt="みんなの特定保健指導" class="app-icon">
+                <span class="app-name">みんなの特定保健指導</span>
+                <span class="platform-tag">iPhone / iPad</span>
+                <span class="click-info">App Storeを開く</span>
+            </div>
+        </a>
 
-        <div class="app-card">
-            <img src="icon_shindan.png" alt="みんなの健康診断 アイコン" class="app-icon">
-            <span class="app-name">みんなの健康診断 [cite: 6]</span>
-            <span class="platform-tag">iPhone / iPad</span>
-        </div>
+        <a href="https://apps.apple.com/app/id6761079437" class="app-link">
+            <div class="app-card">
+                <img src="icon_shindan.png" alt="みんなの健康診断" class="app-icon">
+                <span class="app-name">みんなの健康診断</span>
+                <span class="platform-tag">iPhone / iPad</span>
+                <span class="click-info">App Storeを開く</span>
+            </div>
+        </a>
     </div>
 
 </body>
